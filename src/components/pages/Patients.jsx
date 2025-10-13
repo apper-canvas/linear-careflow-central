@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { toast } from "react-hot-toast";
+import { toast } from "react-toastify";
 import Button from "@/components/atoms/Button";
 import Header from "@/components/organisms/Header";
 import PatientList from "@/components/organisms/PatientList";
@@ -18,7 +18,7 @@ const Patients = () => {
     navigate("/patients/add");
   };
 
-  const handleSelectPatient = (patient) => {
+const handleSelectPatient = (patient) => {
     setSelectedPatient(patient);
     toast.success(`Selected patient: ${patient.firstName} ${patient.lastName}`);
   };
