@@ -7,6 +7,8 @@ const Select = forwardRef(({
   error,
   helperText,
   children,
+  options,
+  placeholder,
   className, 
   ...props 
 }, ref) => {
@@ -29,7 +31,20 @@ const Select = forwardRef(({
           )}
           {...props}
         >
-          {children}
+          {placeholder && (
+            <option value="" disabled>
+              {placeholder}
+            </option>
+          )}
+          {options ? (
+            options.map((option) => (
+              <option key={option.value} value={option.value}>
+                {option.label}
+              </option>
+            ))
+          ) : (
+            children
+          )}
         </select>
         <ApperIcon 
           name="ChevronDown" 
