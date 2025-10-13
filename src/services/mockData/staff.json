@@ -1,0 +1,80 @@
+[
+  {
+    "Id": 1,
+    "firstName": "Dr. Amanda",
+    "lastName": "Mitchell",
+    "role": "Cardiologist",
+    "department": "Cardiology",
+    "specialization": "Interventional Cardiology",
+    "phone": "+1-555-1001",
+    "email": "a.mitchell@hospital.com",
+    "availabilityStatus": "Available",
+    "workingHours": "8:00 AM - 6:00 PM",
+    "joinDate": "2020-03-15"
+  },
+  {
+    "Id": 2,
+    "firstName": "Dr. David",
+    "lastName": "Thompson",
+    "role": "Internist",
+    "department": "Internal Medicine",
+    "specialization": "General Internal Medicine",
+    "phone": "+1-555-1002",
+    "email": "d.thompson@hospital.com",
+    "availabilityStatus": "Busy",
+    "workingHours": "7:00 AM - 5:00 PM",
+    "joinDate": "2018-08-22"
+  },
+  {
+    "Id": 3,
+    "firstName": "Dr. Jennifer",
+    "lastName": "Lee",
+    "role": "Obstetrician",
+    "department": "Obstetrics",
+    "specialization": "Maternal-Fetal Medicine",
+    "phone": "+1-555-1003",
+    "email": "j.lee@hospital.com",
+    "availabilityStatus": "Available",
+    "workingHours": "9:00 AM - 7:00 PM",
+    "joinDate": "2019-11-10"
+  },
+  {
+    "Id": 4,
+    "firstName": "Dr. Robert",
+    "lastName": "Garcia",
+    "role": "Pulmonologist",
+    "department": "Pulmonology",
+    "specialization": "Critical Care Medicine",
+    "phone": "+1-555-1004",
+    "email": "r.garcia@hospital.com",
+    "availabilityStatus": "On Call",
+    "workingHours": "6:00 AM - 4:00 PM",
+    "joinDate": "2017-05-03"
+  },
+  {
+    "Id": 5,
+    "firstName": "Sarah",
+    "lastName": "Williams",
+    "role": "Nurse Manager",
+    "department": "Emergency",
+    "specialization": "Emergency Care",
+    "phone": "+1-555-1005",
+    "email": "s.williams@hospital.com",
+    "availabilityStatus": "Available",
+    "workingHours": "12:00 PM - 12:00 AM",
+    "joinDate": "2021-01-18"
+  },
+  {
+    "Id": 6,
+    "firstName": "Mark",
+    "lastName": "Anderson",
+    "role": "Technician",
+    "department": "Radiology",
+    "specialization": "MRI/CT Imaging",
+    "phone": "+1-555-1006",
+    "email": "m.anderson@hospital.com",
+    "availabilityStatus": "Off Duty",
+    "workingHours": "10:00 AM - 8:00 PM",
+    "joinDate": "2022-09-12"
+  }
+]

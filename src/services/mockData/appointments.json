@@ -1,0 +1,80 @@
+[
+  {
+    "Id": 1,
+    "patientId": "1",
+    "doctorId": "1",
+    "date": "2024-01-15",
+    "time": "09:00",
+    "duration": 30,
+    "department": "Cardiology",
+    "reason": "Follow-up consultation",
+    "status": "Scheduled",
+    "notes": "Patient reports feeling better",
+    "createdAt": "2024-01-10"
+  },
+  {
+    "Id": 2,
+    "patientId": "2",
+    "doctorId": "2",
+    "date": "2024-01-15",
+    "time": "10:30",
+    "duration": 45,
+    "department": "Internal Medicine",
+    "reason": "Annual physical examination",
+    "status": "Completed",
+    "notes": "All vitals normal, lab work ordered",
+    "createdAt": "2024-01-08"
+  },
+  {
+    "Id": 3,
+    "patientId": "3",
+    "doctorId": "3",
+    "date": "2024-01-16",
+    "time": "14:00",
+    "duration": 30,
+    "department": "Obstetrics",
+    "reason": "Prenatal checkup",
+    "status": "Scheduled",
+    "notes": "Regular 28-week checkup",
+    "createdAt": "2024-01-12"
+  },
+  {
+    "Id": 4,
+    "patientId": "4",
+    "doctorId": "1",
+    "date": "2024-01-16",
+    "time": "11:00",
+    "duration": 60,
+    "department": "Emergency",
+    "reason": "Chest pain evaluation",
+    "status": "In Progress",
+    "notes": "Patient admitted for observation",
+    "createdAt": "2024-01-16"
+  },
+  {
+    "Id": 5,
+    "patientId": "5",
+    "doctorId": "4",
+    "date": "2024-01-17",
+    "time": "15:30",
+    "duration": 30,
+    "department": "Pulmonology",
+    "reason": "Asthma management",
+    "status": "Scheduled",
+    "notes": "Medication adjustment needed",
+    "createdAt": "2024-01-13"
+  },
+  {
+    "Id": 6,
+    "patientId": "6",
+    "doctorId": "2",
+    "date": "2024-01-18",
+    "time": "08:30",
+    "duration": 30,
+    "department": "Internal Medicine",
+    "reason": "Routine checkup",
+    "status": "Scheduled",
+    "notes": "Annual wellness visit",
+    "createdAt": "2024-01-14"
+  }
+]

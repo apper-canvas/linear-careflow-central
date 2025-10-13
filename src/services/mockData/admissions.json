@@ -1,0 +1,54 @@
+[
+  {
+    "Id": 1,
+    "patientId": "2",
+    "departmentId": "2",
+    "bedNumber": "C-205",
+    "admissionDate": "2024-01-14",
+    "admissionType": "Emergency",
+    "attendingDoctorId": "1",
+    "diagnosis": "Acute myocardial infarction",
+    "status": "Active",
+    "estimatedDischarge": "2024-01-18",
+    "actualDischarge": null
+  },
+  {
+    "Id": 2,
+    "patientId": "4",
+    "departmentId": "1",
+    "bedNumber": "E-108",
+    "admissionDate": "2024-01-16",
+    "admissionType": "Emergency",
+    "attendingDoctorId": "5",
+    "diagnosis": "Diabetic ketoacidosis",
+    "status": "Critical",
+    "estimatedDischarge": "2024-01-20",
+    "actualDischarge": null
+  },
+  {
+    "Id": 3,
+    "patientId": "1",
+    "departmentId": "3",
+    "bedNumber": "IM-312",
+    "admissionDate": "2024-01-10",
+    "admissionType": "Planned",
+    "attendingDoctorId": "2",
+    "diagnosis": "Diabetes management",
+    "status": "Stable",
+    "estimatedDischarge": "2024-01-17",
+    "actualDischarge": null
+  },
+  {
+    "Id": 4,
+    "patientId": "3",
+    "departmentId": "4",
+    "bedNumber": "OB-402",
+    "admissionDate": "2024-01-12",
+    "admissionType": "Planned",
+    "attendingDoctorId": "3",
+    "diagnosis": "High-risk pregnancy monitoring",
+    "status": "Stable",
+    "estimatedDischarge": "2024-01-22",
+    "actualDischarge": null
+  }
+]

@@ -1,0 +1,56 @@
+[
+  {
+    "Id": 1,
+    "name": "Emergency Department",
+    "totalBeds": 25,
+    "occupiedBeds": 18,
+    "headOfDepartment": "Dr. Sarah Williams",
+    "phone": "+1-555-2001",
+    "floor": "Ground Floor"
+  },
+  {
+    "Id": 2,
+    "name": "Cardiology",
+    "totalBeds": 20,
+    "occupiedBeds": 12,
+    "headOfDepartment": "Dr. Amanda Mitchell",
+    "phone": "+1-555-2002",
+    "floor": "2nd Floor"
+  },
+  {
+    "Id": 3,
+    "name": "Internal Medicine",
+    "totalBeds": 30,
+    "occupiedBeds": 22,
+    "headOfDepartment": "Dr. David Thompson",
+    "phone": "+1-555-2003",
+    "floor": "3rd Floor"
+  },
+  {
+    "Id": 4,
+    "name": "Obstetrics & Gynecology",
+    "totalBeds": 15,
+    "occupiedBeds": 8,
+    "headOfDepartment": "Dr. Jennifer Lee",
+    "phone": "+1-555-2004",
+    "floor": "4th Floor"
+  },
+  {
+    "Id": 5,
+    "name": "Pulmonology",
+    "totalBeds": 18,
+    "occupiedBeds": 14,
+    "headOfDepartment": "Dr. Robert Garcia",
+    "phone": "+1-555-2005",
+    "floor": "5th Floor"
+  },
+  {
+    "Id": 6,
+    "name": "Pediatrics",
+    "totalBeds": 12,
+    "occupiedBeds": 5,
+    "headOfDepartment": "Dr. Lisa Park",
+    "phone": "+1-555-2006",
+    "floor": "6th Floor"
+  }
+]
