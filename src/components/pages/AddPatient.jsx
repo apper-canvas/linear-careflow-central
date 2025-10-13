@@ -12,20 +12,20 @@ const AddPatient = () => {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
-    firstName: "",
-    lastName: "",
-    dateOfBirth: "",
-    gender: "",
-    bloodGroup: "",
-    phone: "",
-    email: "",
-    address: "",
-    emergencyContact: "",
-    emergencyPhone: "",
-    allergies: "",
-    medications: "",
-    medicalHistory: "",
-    admissionStatus: "Outpatient"
+first_name_c: "",
+    last_name_c: "",
+    date_of_birth_c: "",
+    gender_c: "",
+    blood_group_c: "",
+    phone_c: "",
+    email_c: "",
+    address_c: "",
+    emergency_contact_c: "",
+    emergency_phone_c: "",
+    allergies_c: "",
+    medications_c: "",
+    medical_history_c: "",
+    admission_status_c: "Outpatient"
   });
   const [errors, setErrors] = useState({});
 
@@ -65,35 +65,34 @@ const AddPatient = () => {
     const newErrors = {};
 
     // Required fields validation
-    if (!formData.firstName.trim()) newErrors.firstName = "First name is required";
-    if (!formData.lastName.trim()) newErrors.lastName = "Last name is required";
-    if (!formData.dateOfBirth) newErrors.dateOfBirth = "Date of birth is required";
-    if (!formData.gender) newErrors.gender = "Gender is required";
-    if (!formData.bloodGroup) newErrors.bloodGroup = "Blood group is required";
-    if (!formData.phone.trim()) newErrors.phone = "Phone number is required";
-    if (!formData.emergencyContact.trim()) newErrors.emergencyContact = "Emergency contact is required";
-    if (!formData.emergencyPhone.trim()) newErrors.emergencyPhone = "Emergency phone is required";
-
+if (!formData.first_name_c.trim()) newErrors.first_name_c = "First name is required";
+    if (!formData.last_name_c.trim()) newErrors.last_name_c = "Last name is required";
+    if (!formData.date_of_birth_c) newErrors.date_of_birth_c = "Date of birth is required";
+    if (!formData.gender_c) newErrors.gender_c = "Gender is required";
+    if (!formData.blood_group_c) newErrors.blood_group_c = "Blood group is required";
+    if (!formData.phone_c.trim()) newErrors.phone_c = "Phone number is required";
+    if (!formData.emergency_contact_c.trim()) newErrors.emergency_contact_c = "Emergency contact is required";
+    if (!formData.emergency_phone_c.trim()) newErrors.emergency_phone_c = "Emergency phone is required";
     // Email validation
-    if (formData.email && !/\S+@\S+\.\S+/.test(formData.email)) {
-      newErrors.email = "Invalid email format";
+if (formData.email_c && !/\S+@\S+\.\S+/.test(formData.email_c)) {
+      newErrors.email_c = "Invalid email format";
     }
 
     // Phone validation
-    const phoneRegex = /^\+?[\d\s\-()]+$/;
-    if (formData.phone && !phoneRegex.test(formData.phone)) {
-      newErrors.phone = "Invalid phone format";
+const phoneRegex = /^\+?[\d\s\-()]+$/;
+    if (formData.phone_c && !phoneRegex.test(formData.phone_c)) {
+      newErrors.phone_c = "Invalid phone format";
     }
-    if (formData.emergencyPhone && !phoneRegex.test(formData.emergencyPhone)) {
-      newErrors.emergencyPhone = "Invalid emergency phone format";
+    if (formData.emergency_phone_c && !phoneRegex.test(formData.emergency_phone_c)) {
+      newErrors.emergency_phone_c = "Invalid emergency phone format";
     }
 
     // Date validation
-    if (formData.dateOfBirth) {
-      const birthDate = new Date(formData.dateOfBirth);
+if (formData.date_of_birth_c) {
+      const birthDate = new Date(formData.date_of_birth_c);
       const today = new Date();
       if (birthDate > today) {
-        newErrors.dateOfBirth = "Date of birth cannot be in the future";
+        newErrors.date_of_birth_c = "Date of birth cannot be in the future";
       }
     }
 
@@ -114,9 +113,10 @@ const AddPatient = () => {
       
       // Prepare patient data
       const patientData = {
-        ...formData,
-        allergies: formData.allergies ? formData.allergies.split(',').map(item => item.trim()).filter(item => item) : [],
-        medications: formData.medications ? formData.medications.split(',').map(item => item.trim()).filter(item => item) : []
+...formData,
+        allergies_c: formData.allergies_c || "",
+        medications_c: formData.medications_c || "",
+        medical_history_c: formData.medical_history_c || ""
       };
 
       await patientService.create(patientData);
@@ -158,68 +158,68 @@ const AddPatient = () => {
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <Input
-                label="First Name *"
-                value={formData.firstName}
-                onChange={(e) => handleInputChange('firstName', e.target.value)}
+label="First Name *"
+                value={formData.first_name_c}
+                onChange={(e) => handleInputChange('first_name_c', e.target.value)}
                 placeholder="Enter first name"
-                error={errors.firstName}
+                error={errors.first_name_c}
                 required
               />
-              <Input
+<Input
                 label="Last Name *"
-                value={formData.lastName}
-                onChange={(e) => handleInputChange('lastName', e.target.value)}
+                value={formData.last_name_c}
+                onChange={(e) => handleInputChange('last_name_c', e.target.value)}
                 placeholder="Enter last name"
-                error={errors.lastName}
+                error={errors.last_name_c}
                 required
-              />
+/>
               <Input
                 label="Date of Birth *"
                 type="date"
-                value={formData.dateOfBirth}
-                onChange={(e) => handleInputChange('dateOfBirth', e.target.value)}
-                error={errors.dateOfBirth}
+                value={formData.date_of_birth_c}
+                onChange={(e) => handleInputChange('date_of_birth_c', e.target.value)}
+                error={errors.date_of_birth_c}
                 required
               />
-              <Select
+<Select
                 label="Gender *"
-                value={formData.gender}
-                onChange={(e) => handleInputChange('gender', e.target.value)}
+                value={formData.gender_c}
+                onChange={(e) => handleInputChange('gender_c', e.target.value)}
                 options={genderOptions}
-                error={errors.gender}
+                error={errors.gender_c}
                 required
               />
               <Select
-                label="Blood Group *"
-                value={formData.bloodGroup}
-                onChange={(e) => handleInputChange('bloodGroup', e.target.value)}
+label="Blood Group *"
+                value={formData.blood_group_c}
+                onChange={(e) => handleInputChange('blood_group_c', e.target.value)}
                 options={bloodGroupOptions}
-                error={errors.bloodGroup}
+                error={errors.blood_group_c}
                 required
               />
               <Input
-                label="Phone Number *"
-                value={formData.phone}
-                onChange={(e) => handleInputChange('phone', e.target.value)}
+label="Phone Number *"
+                value={formData.phone_c}
+                onChange={(e) => handleInputChange('phone_c', e.target.value)}
                 placeholder="+1-555-0123"
-                error={errors.phone}
+                error={errors.phone_c}
                 required
               />
               <Input
-                label="Email"
+label="Email"
                 type="email"
-                value={formData.email}
-                onChange={(e) => handleInputChange('email', e.target.value)}
+                value={formData.email_c}
+                onChange={(e) => handleInputChange('email_c', e.target.value)}
                 placeholder="patient@email.com"
-                error={errors.email}
+                error={errors.email_c}
                 className="md:col-span-2"
               />
-              <Input
+<Input
                 label="Address"
-                value={formData.address}
-                onChange={(e) => handleInputChange('address', e.target.value)}
+                value={formData.address_c}
+                onChange={(e) => handleInputChange('address_c', e.target.value)}
                 placeholder="Street, City, State, ZIP"
-                error={errors.address}
+                error={errors.address_c}
                 className="md:col-span-2"
               />
             </div>
@@ -234,19 +234,19 @@ const AddPatient = () => {
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <Input
-                label="Emergency Contact Name *"
-                value={formData.emergencyContact}
-                onChange={(e) => handleInputChange('emergencyContact', e.target.value)}
+label="Emergency Contact Name *"
+                value={formData.emergency_contact_c}
+                onChange={(e) => handleInputChange('emergency_contact_c', e.target.value)}
                 placeholder="Contact person name"
-                error={errors.emergencyContact}
+                error={errors.emergency_contact_c}
                 required
               />
-              <Input
+<Input
                 label="Emergency Phone *"
-                value={formData.emergencyPhone}
-                onChange={(e) => handleInputChange('emergencyPhone', e.target.value)}
+                value={formData.emergency_phone_c}
+                onChange={(e) => handleInputChange('emergency_phone_c', e.target.value)}
                 placeholder="+1-555-0123"
-                error={errors.emergencyPhone}
+                error={errors.emergency_phone_c}
                 required
               />
             </div>
@@ -261,32 +261,32 @@ const AddPatient = () => {
             </h2>
             <div className="space-y-4">
               <Input
-                label="Allergies"
-                value={formData.allergies}
-                onChange={(e) => handleInputChange('allergies', e.target.value)}
-                placeholder="Separate multiple allergies with commas (e.g., Penicillin, Shellfish)"
-                error={errors.allergies}
+label="Allergies"
+                value={formData.allergies_c}
+                onChange={(e) => handleInputChange('allergies_c', e.target.value)}
+                placeholder="List known allergies"
+                error={errors.allergies_c}
               />
               <Input
-                label="Current Medications"
-                value={formData.medications}
-                onChange={(e) => handleInputChange('medications', e.target.value)}
-                placeholder="Separate multiple medications with commas (e.g., Lisinopril 10mg, Aspirin 81mg)"
-                error={errors.medications}
+label="Current Medications"
+                value={formData.medications_c}
+                onChange={(e) => handleInputChange('medications_c', e.target.value)}
+                placeholder="List current medications"
+                error={errors.medications_c}
               />
               <Input
-                label="Medical History"
-                value={formData.medicalHistory}
-                onChange={(e) => handleInputChange('medicalHistory', e.target.value)}
+label="Medical History"
+                value={formData.medical_history_c}
+                onChange={(e) => handleInputChange('medical_history_c', e.target.value)}
                 placeholder="Brief medical history or current conditions"
-                error={errors.medicalHistory}
+                error={errors.medical_history_c}
               />
-              <Select
+<Select
                 label="Admission Status"
-                value={formData.admissionStatus}
-                onChange={(e) => handleInputChange('admissionStatus', e.target.value)}
+                value={formData.admission_status_c}
+                onChange={(e) => handleInputChange('admission_status_c', e.target.value)}
                 options={admissionStatusOptions}
-                error={errors.admissionStatus}
+                error={errors.admission_status_c}
               />
             </div>
           </div>

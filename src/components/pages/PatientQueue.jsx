@@ -67,38 +67,38 @@ const PatientQueue = () => {
 
     // Filter by search query
     if (searchQuery.trim()) {
-      filtered = filtered.filter(item => {
-        const patient = getPatientName(item.patientId);
+filtered = filtered.filter(item => {
+        const patient = getPatientName(item.patient_id_c?.Id || item.patient_id_c);
         return patient.toLowerCase().includes(searchQuery.toLowerCase()) ||
-               item.ticketNumber.toLowerCase().includes(searchQuery.toLowerCase());
+               item.ticket_number_c?.toLowerCase().includes(searchQuery.toLowerCase());
       });
     }
 
     // Filter by department
-    if (selectedDepartment !== "all") {
-      filtered = filtered.filter(item => item.departmentId === parseInt(selectedDepartment));
+if (selectedDepartment !== "all") {
+      filtered = filtered.filter(item => 
+        (item.department_id_c?.Id || item.department_id_c) === parseInt(selectedDepartment)
+      );
     }
 
     // Filter by status
     if (selectedStatus !== "all") {
-      filtered = filtered.filter(item => item.status === selectedStatus);
+filtered = filtered.filter(item => item.status_c === selectedStatus);
     }
-
     setFilteredQueue(filtered);
   }, [queue, searchQuery, selectedDepartment, selectedStatus]);
 
-  const getPatientName = (patientId) => {
+const getPatientName = (patientId) => {
     const patient = patients.find(p => p.Id === patientId);
-    return patient ? `${patient.firstName} ${patient.lastName}` : "Unknown Patient";
+    return patient ? `${patient.first_name_c || patient.Name?.split(' ')[0] || ''} ${patient.last_name_c || patient.Name?.split(' ')[1] || ''}` : "Unknown Patient";
   };
 
   const getDepartmentName = (departmentId) => {
-    const department = departments.find(d => d.Id === departmentId);
-    return department ? department.name : "Unknown Department";
+const department = departments.find(d => d.Id === departmentId);
+    return department ? (department.name_c || department.Name) : "Unknown Department";
   };
-
   const calculateWaitTime = (checkInTime) => {
-    const now = new Date();
+const now = new Date();
     const checkIn = new Date(checkInTime);
     return differenceInMinutes(now, checkIn);
   };
@@ -134,7 +134,7 @@ const PatientQueue = () => {
   };
 
   const handleMarkNoShow = async (queueItem) => {
-    if (confirm(`Mark ${getPatientName(queueItem.patientId)} as No Show?`)) {
+if (confirm(`Mark ${getPatientName(queueItem.patient_id_c?.Id || queueItem.patient_id_c)} as No Show?`)) {
       try {
         await queueService.updateStatus(queueItem.Id, "no_show");
         toast.warning(`Marked ${getPatientName(queueItem.patientId)} as No Show`);
@@ -146,7 +146,7 @@ const PatientQueue = () => {
   };
 
   const handleRemoveFromQueue = async (queueItem) => {
-    if (confirm(`Remove ${getPatientName(queueItem.patientId)} from queue?`)) {
+if (confirm(`Remove ${getPatientName(queueItem.patient_id_c?.Id || queueItem.patient_id_c)} from queue?`)) {
       try {
         await queueService.delete(queueItem.Id);
         toast.success(`Removed ${getPatientName(queueItem.patientId)} from queue`);
@@ -254,8 +254,8 @@ const PatientQueue = () => {
         <Card className="overflow-hidden">
           <div className="divide-y divide-slate-100">
             {filteredQueue.map((queueItem, index) => {
-              const waitTime = calculateWaitTime(queueItem.checkInTime);
-              const isNext = index === 0 && queueItem.status === "waiting";
+const waitTime = calculateWaitTime(queueItem.check_in_time_c);
+              const isNext = index === 0 && queueItem.status_c === "waiting";
               
               return (
                 <div
@@ -268,7 +268,7 @@ const PatientQueue = () => {
                         <div className={`w-12 h-12 rounded-full flex items-center justify-center font-bold text-lg ${
                           isNext ? 'bg-blue-500 text-white' : 'bg-gradient-to-r from-primary/10 to-secondary/10 text-primary'
                         }`}>
-                          {queueItem.position}
+{queueItem.position_c}
                         </div>
                         {isNext && (
                           <span className="text-xs text-blue-600 font-medium mt-1">NEXT</span>
@@ -278,28 +278,28 @@ const PatientQueue = () => {
                       <div className="flex-1">
                         <div className="flex items-center space-x-3 mb-2">
                           <h3 className="font-semibold text-slate-900">
-                            {getPatientName(queueItem.patientId)}
+{getPatientName(queueItem.patient_id_c?.Id || queueItem.patient_id_c)}
                           </h3>
-                          <span className={`px-2 py-1 rounded-full text-xs font-medium ${getStatusColor(queueItem.status)}`}>
-                            {queueItem.status.replace('_', ' ').toUpperCase()}
+<span className={`px-2 py-1 rounded-full text-xs font-medium ${getStatusColor(queueItem.status_c)}`}>
+                            {queueItem.status_c?.replace('_', ' ').toUpperCase()}
                           </span>
                         </div>
                         
                         <div className="flex items-center space-x-6 text-sm text-slate-600">
                           <span className="flex items-center">
                             <ApperIcon name="Ticket" className="w-4 h-4 mr-1" />
-                            {queueItem.ticketNumber}
+{queueItem.ticket_number_c}
                           </span>
                           <span className="flex items-center">
                             <ApperIcon name="Building2" className="w-4 h-4 mr-1" />
-                            {getDepartmentName(queueItem.departmentId)}
+{getDepartmentName(queueItem.department_id_c?.Id || queueItem.department_id_c)}
                           </span>
                           <span className="flex items-center">
                             <ApperIcon name="Clock" className="w-4 h-4 mr-1" />
                             Wait: {waitTime} min
                           </span>
                           <span className="flex items-center">
-                            <ApperIcon name="Calendar" className="w-4 h-4 mr-1" />
+<ApperIcon name="Calendar" className="w-4 h-4 mr-1" />
                             {format(new Date(queueItem.checkInTime), "HH:mm")}
                           </span>
                         </div>
@@ -307,7 +307,7 @@ const PatientQueue = () => {
                     </div>
                     
                     <div className="flex items-center space-x-2">
-                      {queueItem.status === "waiting" && (
+{queueItem.status_c === "waiting" && (
                         <Button
                           size="sm"
                           variant="outline"
@@ -318,7 +318,7 @@ const PatientQueue = () => {
                         </Button>
                       )}
                       
-                      {queueItem.status === "in_progress" && (
+{queueItem.status_c === "in_progress" && (
                         <Button
                           size="sm"
                           variant="outline"
@@ -329,7 +329,7 @@ const PatientQueue = () => {
                         </Button>
                       )}
                       
-                      {queueItem.status === "waiting" && (
+{queueItem.status_c === "waiting" && (
                         <Button
                           size="sm"
                           variant="outline"

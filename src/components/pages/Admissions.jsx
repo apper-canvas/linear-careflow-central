@@ -55,20 +55,20 @@ const Admissions = () => {
   }, []);
 
   const handleSearch = (query) => {
-    if (!query.trim()) {
+if (!query.trim()) {
       setFilteredAdmissions(admissions);
       return;
     }
 
     const filtered = admissions.filter(admission => {
-      const patient = getPatientById(admission.patientId);
-      const department = getDepartmentById(admission.departmentId);
+      const patient = getPatientById(admission.patient_id_c?.Id || admission.patient_id_c);
+      const department = getDepartmentById(admission.department_id_c?.Id || admission.department_id_c);
       
       return (
-        admission.bedNumber.toLowerCase().includes(query.toLowerCase()) ||
-        admission.diagnosis.toLowerCase().includes(query.toLowerCase()) ||
-        (patient && `${patient.firstName} ${patient.lastName}`.toLowerCase().includes(query.toLowerCase())) ||
-        (department && department.name.toLowerCase().includes(query.toLowerCase()))
+        admission.bed_number_c?.toLowerCase().includes(query.toLowerCase()) ||
+        admission.diagnosis_c?.toLowerCase().includes(query.toLowerCase()) ||
+        (patient && `${patient.first_name_c} ${patient.last_name_c}`.toLowerCase().includes(query.toLowerCase())) ||
+        (department && department.name_c?.toLowerCase().includes(query.toLowerCase()))
       );
     });
     setFilteredAdmissions(filtered);
@@ -90,8 +90,9 @@ const Admissions = () => {
     toast.info("Admit patient feature will be implemented soon");
   };
 
-  const handleDischarge = (admission) => {
-    toast.success(`Discharge process started for ${getPatientById(admission.patientId)?.firstName} ${getPatientById(admission.patientId)?.lastName}`);
+const handleDischarge = (admission) => {
+    const patient = getPatientById(admission.patient_id_c?.Id || admission.patient_id_c);
+    toast.success(`Discharge process started for ${patient?.first_name_c || patient?.Name?.split(' ')[0] || ''} ${patient?.last_name_c || patient?.Name?.split(' ')[1] || ''}`);
   };
 
   if (loading) return <Loading variant="table" />;
@@ -137,11 +138,11 @@ const Admissions = () => {
           />
         ) : (
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-            {filteredAdmissions.map((admission) => {
-              const patient = getPatientById(admission.patientId);
-              const department = getDepartmentById(admission.departmentId);
-              const attendingDoctor = getStaffById(admission.attendingDoctorId);
-              const daysAdmitted = differenceInDays(new Date(), parseISO(admission.admissionDate));
+{filteredAdmissions.map((admission) => {
+              const patient = getPatientById(admission.patient_id_c?.Id || admission.patient_id_c);
+              const department = getDepartmentById(admission.department_id_c?.Id || admission.department_id_c);
+              const attendingDoctor = getStaffById(admission.attending_doctor_id_c?.Id || admission.attending_doctor_id_c);
+              const daysAdmitted = admission.admission_date_c ? differenceInDays(new Date(), parseISO(admission.admission_date_c)) : 0;
               
               return (
                 <Card key={admission.Id} className="p-6" hover>
@@ -152,33 +153,33 @@ const Admissions = () => {
                       </div>
                       <div>
                         <h3 className="font-semibold text-slate-900">
-                          {patient ? `${patient.firstName} ${patient.lastName}` : "Unknown Patient"}
+                          {patient ? `${patient.first_name_c || patient.Name?.split(' ')[0] || ''} ${patient.last_name_c || patient.Name?.split(' ')[1] || ''}` : "Unknown Patient"}
                         </h3>
-                        <p className="text-sm text-slate-600">Room {admission.bedNumber}</p>
+                        <p className="text-sm text-slate-600">Room {admission.bed_number_c}</p>
                       </div>
                     </div>
-                    <StatusBadge status={admission.status} type="admission" />
+                    <StatusBadge status={admission.status_c} type="admission" />
                   </div>
 
                   <div className="space-y-3">
                     <div className="flex items-center text-sm text-slate-600">
                       <ApperIcon name="Building2" className="w-4 h-4 mr-2 text-slate-500" />
-                      {department?.name || "Unknown Department"}
+                      {department?.name_c || department?.Name || "Unknown Department"}
                     </div>
                     
                     <div className="flex items-center text-sm text-slate-600">
                       <ApperIcon name="UserCheck" className="w-4 h-4 mr-2 text-slate-500" />
-                      {attendingDoctor ? `${attendingDoctor.firstName} ${attendingDoctor.lastName}` : "Unassigned"}
+                      {attendingDoctor ? `${attendingDoctor.first_name_c || attendingDoctor.Name?.split(' ')[0] || ''} ${attendingDoctor.last_name_c || attendingDoctor.Name?.split(' ')[1] || ''}` : "Unassigned"}
                     </div>
                     
                     <div className="flex items-center text-sm text-slate-600">
                       <ApperIcon name="FileText" className="w-4 h-4 mr-2 text-slate-500" />
-                      {admission.diagnosis}
+                      {admission.diagnosis_c}
                     </div>
                     
                     <div className="flex items-center text-sm text-slate-600">
                       <ApperIcon name="Calendar" className="w-4 h-4 mr-2 text-slate-500" />
-                      Admitted {format(parseISO(admission.admissionDate), "MMM d, yyyy")}
+                      Admitted {admission.admission_date_c ? format(parseISO(admission.admission_date_c), "MMM d, yyyy") : "Unknown"}
                     </div>
                     
                     <div className="flex items-center text-sm text-slate-600">
@@ -186,17 +187,17 @@ const Admissions = () => {
                       {daysAdmitted} day{daysAdmitted !== 1 ? "s" : ""} admitted
                     </div>
 
-                    {admission.estimatedDischarge && (
+                    {admission.estimated_discharge_c && (
                       <div className="flex items-center text-sm text-slate-600">
                         <ApperIcon name="LogOut" className="w-4 h-4 mr-2 text-slate-500" />
-                        Est. discharge: {format(parseISO(admission.estimatedDischarge), "MMM d, yyyy")}
+                        Est. discharge: {format(parseISO(admission.estimated_discharge_c), "MMM d, yyyy")}
                       </div>
                     )}
                   </div>
 
                   <div className="flex items-center justify-between pt-4 mt-4 border-t border-slate-100">
                     <div className="text-xs text-slate-500">
-                      {admission.admissionType} admission
+                      {admission.admission_type_c} admission
                     </div>
                     <div className="flex space-x-2">
                       <Button variant="outline" size="sm" icon="FileText">
