@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { useOutletContext } from "react-router-dom";
 import Header from "@/components/organisms/Header";
 import Card from "@/components/atoms/Card";
 import Button from "@/components/atoms/Button";
@@ -10,8 +9,7 @@ import ApperIcon from "@/components/ApperIcon";
 import departmentService from "@/services/api/departmentService";
 import { toast } from "react-toastify";
 
-const Departments = () => {
-  const { toggleSidebar } = useOutletContext();
+const Departments = ({ toggleSidebar, closeSidebar }) => {
   const [departments, setDepartments] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
