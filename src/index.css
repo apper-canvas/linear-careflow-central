@@ -125,3 +125,55 @@ select:focus {
 .status-badge:hover::before {
   left: 100%;
 }
+
+/* Pagination styles */
+.pagination-button {
+  min-width: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease-out;
+}
+
+.pagination-button:hover:not(:disabled) {
+  background: linear-gradient(135deg, #0077BE 0%, #2C5F7C 100%);
+  color: white;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 119, 190, 0.2);
+}
+
+.pagination-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.pagination-info {
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  color: #64748B;
+}
+
+/* Pagination responsive adjustments */
+@media (max-width: 640px) {
+  .pagination-button {
+    min-width: 70px;
+    font-size: 12px;
+    padding: 6px 12px;
+  }
+  
+  .pagination-info {
+    font-size: 12px;
+  }
+  
+  .pagination-button .lucide {
+    width: 12px;
+    height: 12px;
+  }
+}
+
+/* Pagination container hover effects */
+.pagination-container:hover .pagination-info {
+  color: #475569;
+  transition: color 0.2s ease-out;
+}
