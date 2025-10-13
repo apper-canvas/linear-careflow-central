@@ -1,23 +1,27 @@
 import React, { useState } from "react";
-import { useOutletContext } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-hot-toast";
+import Button from "@/components/atoms/Button";
 import Header from "@/components/organisms/Header";
 import PatientList from "@/components/organisms/PatientList";
-import Button from "@/components/atoms/Button";
-import { toast } from "react-toastify";
 
 const Patients = () => {
-  const { toggleSidebar } = useOutletContext();
+  const navigate = useNavigate();
   const [selectedPatient, setSelectedPatient] = useState(null);
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+
+  const toggleSidebar = () => {
+    setSidebarOpen(prev => !prev);
+  };
+
+  const handleAddPatient = () => {
+    navigate("/patients/add");
+  };
 
   const handleSelectPatient = (patient) => {
     setSelectedPatient(patient);
     toast.success(`Selected patient: ${patient.firstName} ${patient.lastName}`);
   };
-
-  const handleAddPatient = () => {
-    toast.info("Add patient feature will be implemented soon");
-  };
-
   return (
     <div className="space-y-8">
       <Header 

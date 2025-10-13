@@ -5,6 +5,7 @@ import Layout from "@/components/organisms/Layout";
 // Lazy load all page components
 const Dashboard = lazy(() => import("@/components/pages/Dashboard"));
 const Patients = lazy(() => import("@/components/pages/Patients"));
+const AddPatient = lazy(() => import("@/components/pages/AddPatient"));
 const Appointments = lazy(() => import("@/components/pages/Appointments"));
 const Staff = lazy(() => import("@/components/pages/Staff"));
 const PatientQueue = lazy(() => import("@/components/pages/PatientQueue"));
@@ -25,14 +26,18 @@ const mainRoutes = [
     index: true,
     element: <SuspenseWrapper><Dashboard /></SuspenseWrapper>
   },
-  {
+{
     path: "patients",
     element: <SuspenseWrapper><Patients /></SuspenseWrapper>
   },
   {
+    path: "patients/add",
+    element: <SuspenseWrapper><AddPatient /></SuspenseWrapper>
+  },
+  {
     path: "appointments",
     element: <SuspenseWrapper><Appointments /></SuspenseWrapper>
-},
+  },
   {
     path: "patient-queue",
     element: (

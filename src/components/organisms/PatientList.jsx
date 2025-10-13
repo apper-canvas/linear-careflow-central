@@ -62,7 +62,7 @@ const PatientList = ({ onSelectPatient, onAddPatient }) => {
           <h2 className="text-xl font-semibold text-slate-900 mb-1">Patient Directory</h2>
           <p className="text-slate-600">Manage patient records and information</p>
         </div>
-        <Button onClick={onAddPatient} icon="Plus">
+<Button onClick={onAddPatient} icon="Plus">
           Add New Patient
         </Button>
       </div>
@@ -77,7 +77,7 @@ const PatientList = ({ onSelectPatient, onAddPatient }) => {
         </div>
       </div>
 
-      {filteredPatients.length === 0 && !loading ? (
+{filteredPatients.length === 0 && !loading ? (
         <Empty 
           icon="Users"
           title={searchQuery ? "No patients found" : "No patients registered"}
