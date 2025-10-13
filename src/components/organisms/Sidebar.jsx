@@ -12,7 +12,8 @@ const Sidebar = ({ isOpen, onClose }) => {
     { path: "appointments", label: "Appointments", icon: "Calendar" },
     { path: "staff", label: "Staff", icon: "UserCheck" },
     { path: "departments", label: "Departments", icon: "Building2" },
-    { path: "admissions", label: "Admissions", icon: "Bed" }
+{ path: "admissions", label: "Admissions", icon: "Bed" },
+    { path: "patient-queue", label: "Patient Queue", icon: "Clock" }
   ];
 
   const isActivePath = (path) => {

@@ -10,7 +10,7 @@ class PatientService {
     return [...this.patients];
   }
 
-  async getById(id) {
+async getById(id) {
     await this.delay(200);
     const patient = this.patients.find(p => p.Id === parseInt(id));
     return patient ? { ...patient } : null;

@@ -7,6 +7,7 @@ const Dashboard = lazy(() => import("@/components/pages/Dashboard"));
 const Patients = lazy(() => import("@/components/pages/Patients"));
 const Appointments = lazy(() => import("@/components/pages/Appointments"));
 const Staff = lazy(() => import("@/components/pages/Staff"));
+const PatientQueue = lazy(() => import("@/components/pages/PatientQueue"));
 const Departments = lazy(() => import("@/components/pages/Departments"));
 const Admissions = lazy(() => import("@/components/pages/Admissions"));
 const NotFound = lazy(() => import("@/components/pages/NotFound"));
@@ -31,6 +32,14 @@ const mainRoutes = [
   {
     path: "appointments",
     element: <SuspenseWrapper><Appointments /></SuspenseWrapper>
+},
+  {
+    path: "patient-queue",
+    element: (
+      <Suspense fallback={<div>Loading.....</div>}>
+        <PatientQueue />
+      </Suspense>
+    ),
   },
   {
     path: "staff",
