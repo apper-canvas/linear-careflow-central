@@ -6,7 +6,7 @@ import Button from "@/components/atoms/Button";
 import { toast } from "react-toastify";
 
 const Appointments = () => {
-  const { toggleSidebar } = useOutletContext() || { toggleSidebar: () => {} };
+const { toggleSidebar } = useOutletContext();
 
   const handleAddAppointment = () => {
     toast.info("Schedule appointment feature will be implemented soon");

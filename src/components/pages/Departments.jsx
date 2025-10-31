@@ -1,15 +1,17 @@
-import React, { useState, useEffect } from "react";
-import Header from "@/components/organisms/Header";
-import Card from "@/components/atoms/Card";
-import Button from "@/components/atoms/Button";
-import Loading from "@/components/ui/Loading";
-import Error from "@/components/ui/Error";
-import Empty from "@/components/ui/Empty";
-import ApperIcon from "@/components/ApperIcon";
-import departmentService from "@/services/api/departmentService";
+import React, { useEffect, useState } from "react";
+import { useOutletContext } from "react-router-dom";
 import { toast } from "react-toastify";
+import departmentService from "@/services/api/departmentService";
+import ApperIcon from "@/components/ApperIcon";
+import Button from "@/components/atoms/Button";
+import Card from "@/components/atoms/Card";
+import Header from "@/components/organisms/Header";
+import Loading from "@/components/ui/Loading";
+import Empty from "@/components/ui/Empty";
+import Error from "@/components/ui/Error";
 
-const Departments = ({ toggleSidebar, closeSidebar }) => {
+const Departments = () => {
+  const { toggleSidebar } = useOutletContext();
   const [departments, setDepartments] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");

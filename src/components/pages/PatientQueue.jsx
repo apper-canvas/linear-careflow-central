@@ -18,7 +18,7 @@ import { toast } from "react-toastify";
 import { format, differenceInMinutes } from "date-fns";
 
 const PatientQueue = () => {
-  const { toggleSidebar } = useOutletContext();
+const { toggleSidebar } = useOutletContext();
   const [queue, setQueue] = useState([]);
   const [filteredQueue, setFilteredQueue] = useState([]);
   const [patients, setPatients] = useState([]);

@@ -16,7 +16,8 @@ import staffService from "@/services/api/staffService";
 import { format, isToday, parseISO } from "date-fns";
 import { toast } from "react-toastify";
 
-const Dashboard = ({ toggleSidebar, closeSidebar }) => {
+const Dashboard = () => {
+  const { toggleSidebar } = useOutletContext();
   const [stats, setStats] = useState({});
   const [recentAppointments, setRecentAppointments] = useState([]);
   const [activeAdmissions, setActiveAdmissions] = useState([]);
@@ -92,7 +93,7 @@ const Dashboard = ({ toggleSidebar, closeSidebar }) => {
   return (
     <div className="space-y-8">
       <Header 
-        onMenuClick={toggleSidebar}
+onMenuClick={toggleSidebar}
         title="Dashboard"
         actions={
           <div className="flex items-center space-x-3">

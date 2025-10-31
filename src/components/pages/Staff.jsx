@@ -13,7 +13,7 @@ import staffService from "@/services/api/staffService";
 import { toast } from "react-toastify";
 
 const Staff = () => {
-  const { toggleSidebar } = useOutletContext();
+const { toggleSidebar } = useOutletContext();
   const [staff, setStaff] = useState([]);
   const [filteredStaff, setFilteredStaff] = useState([]);
   const [loading, setLoading] = useState(true);

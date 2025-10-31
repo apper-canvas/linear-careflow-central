@@ -17,7 +17,7 @@ import { format, parseISO, differenceInDays } from "date-fns";
 import { toast } from "react-toastify";
 
 const Admissions = () => {
-  const { toggleSidebar } = useOutletContext();
+const { toggleSidebar } = useOutletContext();
   const [admissions, setAdmissions] = useState([]);
   const [filteredAdmissions, setFilteredAdmissions] = useState([]);
   const [patients, setPatients] = useState([]);
